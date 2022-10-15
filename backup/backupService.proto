@@ -1,0 +1,40 @@
+syntax = "proto3";
+package backupService;
+/**
+Compile instruction:
+python3 -m grpc_tools.protoc -I./ --python_out=. --grpc_python_out=. backupService.proto
+**/
+
+service BackupNode {
+    rpc InsertBlock (OpBatch) returns (OpIndex);
+    rpc Insertlog (ValidIndex) returns (VdIndex);
+    rpc Search (searchKey) returns (searchResult);
+}
+
+message searchKey {
+    int32 key = 1;
+}
+
+message searchResult {
+    string value = 1;
+}
+
+message OpBatch {
+    string current_root = 1;
+    string new_root = 2;
+    int32 Index = 8;
+    repeated int32 key = 9;
+    repeated string value = 10;
+}
+
+message ValidIndex {
+    int32 Index = 1;
+}
+
+message OpIndex {
+    int32 Index = 1;
+}
+
+message VdIndex {
+    int32 Index = 1;
+}

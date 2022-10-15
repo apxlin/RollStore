@@ -1,0 +1,5 @@
+import "./mmrRollUp256" as mmrRollUp256
+
+def main(field root, field width, field[256] xItems, field[256] yItems, field newRoot, private field[16] xPeaks, private field[16] yPeaks) -> (field):
+    newRoot == mmrRollUp256(root, width, xPeaks, yPeaks, xItems, yItems)
+    return 1

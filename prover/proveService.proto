@@ -1,0 +1,26 @@
+syntax = "proto3";
+package proveService;
+/**
+Compile instruction:
+python3 -m grpc_tools.protoc -I./ --python_out=. --grpc_python_out=. proveService.proto
+**/
+
+service ProverNode {
+    rpc Execute (Task) returns (ProvedResponse);
+}
+
+message Task {
+    string current_root = 1;
+    int32 current_width = 2;
+    repeated string current_peaksx = 3;
+    repeated string current_peaksy = 4;
+    repeated string items_to_updatex = 5;
+    repeated string items_to_updatey = 6;
+    string new_root = 7;
+}
+
+
+message ProvedResponse {
+    string Status = 1;
+}
+
